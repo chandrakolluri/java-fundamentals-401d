@@ -1,9 +1,12 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Main {
   public static void main(String[] args) {
 
     System.out.println("  ");
 
-    System.out.println("**********Pluralize*********");
+    System.out.println("********** Pluralize *********");
 
     int dogCount = 1;
     System.out.println("I own " + dogCount + " " + pluralize("dog", dogCount) + ".");
@@ -15,9 +18,13 @@ public class Main {
     System.out.println("I own " + turtleCount + " " + pluralize("turtle", turtleCount) + ".");
 
     System.out.println("  ");
-    System.out.println("**********Flipping Coins*********");
+    System.out.println("********** Flipping Coins *********");
 
     flipNHeads(2);
+
+    System.out.println("  ");
+    System.out.println("********** Clock *********");
+    clock(); 
   }
 
   // Accepts the word and appends 's' at the end of the string
@@ -58,4 +65,24 @@ public class Main {
        }
     }
   }
+
+  //Clock
+  public static void clock() 
+  {
+      
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    int initialSecond = LocalDateTime.now().getSecond();
+    int nextSecond = initialSecond;
+
+    while(true) {           
+        nextSecond = LocalDateTime.now().getSecond();       
+
+        if(initialSecond!= nextSecond) {
+            LocalDateTime currentTime = LocalDateTime.now();
+            String formatDateTime = currentTime.format(formatter);
+            System.out.println(formatDateTime);
+            initialSecond = nextSecond;
+        }       
+    }
+}
   }
