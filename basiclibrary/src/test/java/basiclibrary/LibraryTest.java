@@ -18,4 +18,9 @@ public class LibraryTest {
 
     }
 
+    @Test public void testWeatherData() {
+        Library libraryObject = new Library();
+        libraryObject.ProcessWeatherData();
+    }
+
 }
