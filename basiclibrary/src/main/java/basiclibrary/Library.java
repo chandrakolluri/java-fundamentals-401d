@@ -3,6 +3,9 @@
  */
 package basiclibrary;
 import java.lang.Math;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Library {
     public int[] Roll(int lengthOfArray) {
@@ -12,5 +15,47 @@ public class Library {
             System.out.println(newArray[counter]);
         }
         return newArray;
+    }
+
+
+    public void ProcessWeatherData() {
+        // Daily average temperatures for Seattle, October 1-28 2017
+        int[][] weeklyMonthTemperatures = {
+            {66, 64, 58, 65, 71, 57, 60},
+            {57, 65, 65, 70, 72, 65, 51},
+            {55, 54, 60, 53, 59, 57, 61},
+            {65, 56, 55, 52, 55, 62, 57}
+        };
+
+        int lowestTemp = 0;
+        int highestTemp = 0;
+        Set<Integer> temperatureSet = new HashSet<>();
+
+        for (int[] dayTemperature : weeklyMonthTemperatures) {
+            for (int i : dayTemperature) {
+                if (lowestTemp == 0 & highestTemp == 0) {
+                    lowestTemp = highestTemp = i;
+                } else {
+
+                    if (i > highestTemp) {
+                        highestTemp = i;
+                    }
+                    if (i < lowestTemp) {
+                        lowestTemp = i;
+                    }
+                }
+                temperatureSet.add(i);
+            }
+
+            System.out.println("High: " + highestTemp);
+            System.out.println("Low: " + lowestTemp);
+
+            for (int temp = lowestTemp; temp < highestTemp; temp++) {
+                if (!temperatureSet.contains(temp)) {
+                    System.out.println("Never saw temperature: " + temp );
+                }
+            }
+
+        }
     }
 }
